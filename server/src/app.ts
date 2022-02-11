@@ -2,8 +2,8 @@ import * as express from "express";
 
 const app = express();
 
-app.get("/", (_, response) => {
-  response.send("Hello world!");
-});
+app.use(
+  express.static(__dirname + "/../node_modules/@socket.io/admin-ui/ui/dist")
+);
 
 export default app;

@@ -2,7 +2,7 @@ import config from "./config";
 import server from "./server";
 import websockets from "./websockets";
 
-websockets.attach(server);
+websockets(server);
 
 server.listen(config.PORT, config.HOST, () => {
   // tslint:disable-next-line:no-console
