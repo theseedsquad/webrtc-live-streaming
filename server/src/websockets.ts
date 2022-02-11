@@ -26,17 +26,11 @@ const server = new Server<
 >(options);
 
 server.on("connection", (socket) => {
-  const live: Record<string, string> = {};
-
   socket.on("hello", (alias) => {
     socket.data.alias = alias;
 
     const message = `Hello ${alias}`;
     socket.emit("welcome", message);
-  });
-
-  socket.on("createLive", (id) => {
-    live[id] = socket.id;
   });
 });
 
