@@ -1,0 +1,72 @@
+export default {
+  telemetry: false,
+  target: 'server',
+  publicRuntimeConfig: { wsUrl: 'ws://localhost:8080' },
+  head: {
+    title: 'WebRTC Live Streaming',
+    meta: [
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { name: 'format-detection', content: 'telephone=no' },
+    ],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+  },
+  build: { transpile: ['vee-validate/dist/rules'] },
+  buildModules: [
+    '@nuxtjs/eslint-module',
+    '@nuxtjs/stylelint-module',
+    '@nuxt/postcss8',
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/google-fonts',
+    '@nuxtjs/router',
+  ],
+  modules: ['@nuxtjs/i18n', '@nuxtjs/axios', 'cookie-universal-nuxt'],
+  plugins: [
+    '~/plugins/event-bus.js',
+    '~/plugins/mixins.js',
+    '~/plugins/filters.js',
+    '~/plugins/directives.js',
+    '~/plugins/websocket.js',
+    '~/plugins/vee-validate.js',
+  ],
+  loading: false,
+  components: [{ path: '~/components/app', prefix: 'v-app-' }],
+  routerModule: {
+    path: 'pages',
+    fileName: 'index.js',
+    keepDefaultRouter: true,
+    parsePages: false,
+  },
+  googleFonts: {
+    display: 'swap',
+    families: {
+      Roboto: [100, 300, 400, 500, 700],
+      'Roboto+Condensed': [100, 200, 300, 400, 500, 600, 700],
+    },
+  },
+  tailwindcss: {
+    cssPath: '~/assets/style/tailwind.css',
+    configPath: '~/config/tailwind.js',
+    exposeConfig: false,
+    viewer: false,
+  },
+  i18n: {
+    strategy: 'no_prefix',
+    langDir: '~/locales/',
+    locales: [{ code: 'es', name: 'Español', iso: 'es-ES', file: 'es.js' }],
+    defaultLocale: 'es',
+    detectBrowserLanguage: {
+      alwaysRedirect: true,
+      fallbackLocale: 'es',
+      redirectOn: 'root',
+      useCookie: true,
+      cookieKey: 'i18n_language',
+      cookieDomain: null,
+      cookieCrossOrigin: false,
+      cookieSecure: true,
+    },
+  },
+  axios: {
+    baseURL: 'http://localhost:8080',
+  },
+}
