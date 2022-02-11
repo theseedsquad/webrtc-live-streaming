@@ -4,6 +4,6 @@ export default ({ app, store }, inject) => {
   }
 
   const { io } = require('socket.io-client')
-  const websocket = io(app.$config.wsUrl)
-  inject('websocket', websocket)
+  const socket = io(app.$config.wsUrl)
+  inject('socket', socket)
 }
